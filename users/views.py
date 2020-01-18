@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import logout as auth_logout
@@ -50,4 +51,9 @@ def profile(request):
         'p_form': p_form
     }
 
-    return render(request, 'users/profile.html', context)
+    return render(request, 'users/user_profile.html', context)
+
+
+def community_profile(request, username):
+    user = User.objects.get(username=username)
+    return render(request, 'users/community_profile.html', {'c_user': user})

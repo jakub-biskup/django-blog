@@ -1,0 +1,18 @@
+{% extends 'Blog/base.html' %}
+{% load gravatar %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+        <div class="media">
+            {% if c_user.profile.image.url is not None %}
+                <img class="rounded-circle account-img" src="{{ c_user.profile.image.url }}">
+            {% else %}
+                <img class="rounded-circle account-img" src="http://tinygraphs.com/spaceinvaders/{{ c_user.id }}?theme=bythepool&xt=4&h=120&w=120&gx1=0&gy1=0&gy2=60&gx2=60&numcolors=3&size=512">
+            {% endif %}
+            <div class="media-body">
+                <h2 class="account-heading">{{ c_user.username }}</h2>
+                <p class="text-secondary">{{ c_user.email }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
