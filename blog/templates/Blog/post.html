@@ -1,6 +1,5 @@
 {% extends 'Blog/base.html' %}
 {% block content %}
-    {% for post in posts %}
         <article class="media content-section">
             {% if user.profile.image.url is not None %}
                 <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
@@ -12,12 +11,8 @@
               <a class="mr-2" href="#">{{ post.author }}</a>
               <small class="text-muted">{{ post.date_posted | date:'F d, Y' }}</small>
             </div>
-            <h2><a class="article-title" href="/posts/{{post.id}}">{{ post.title }}</a></h2>
-            <p class="article-content">
-                {{ post.content | safe | truncatewords:"80" | linebreaks}}
-                <a href="/posts/{{post.id}}">read more</a>
-            </p>
+            <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+            <p class="article-content">{{ post.content }}</p>
           </div>
         </article>
-    {% endfor %}
 {% endblock %}
