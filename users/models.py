@@ -13,9 +13,10 @@ class Profile(models.Model):
     def save(self):
         super().save()
 
-        img = Image.open(self.image.path)
+        if self.image:
+            img = Image.open(self.image.path)
 
-        if img.height > 256 or img.width > 256:
-            output_size = (256, 256)
-            img.thumbnail(output_size)
-            img.save(self.image.path)
+            if img.height > 256 or img.width > 256:
+                output_size = (256, 256)
+                img.thumbnail(output_size)
+                img.save(self.image.path)

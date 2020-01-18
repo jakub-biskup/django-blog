@@ -2,7 +2,11 @@
 {% block content %}
     {% for post in posts %}
         <article class="media content-section">
-            <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
+            {% if user.profile.image.url is not None %}
+                <!--<img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">-->
+            {% else %}
+                <img class="rounded-circle article-img" src="http://tinygraphs.com/spaceinvaders/{{ user.id }}?theme=bythepool&xt=4&h=120&w=120&gx1=0&gy1=0&gy2=60&gx2=60&numcolors=3&size=256">
+            {% endif %}
           <div class="media-body">
             <div class="article-metadata">
               <a class="mr-2" href="#">{{ post.author }}</a>

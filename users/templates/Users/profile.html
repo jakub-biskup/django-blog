@@ -7,7 +7,7 @@
             {% if user.profile.image.url is not None %}
                 <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
             {% else %}
-                <img class="rounded-circle account-img" src="http://tinygraphs.com/spaceinvaders/{{ user.username }}?theme=bythepool&xt=4&h=120&w=120&gx1=0&gy1=0&gy2=60&gx2=60&numcolors=3&size=512">
+                <img class="rounded-circle account-img" src="http://tinygraphs.com/spaceinvaders/{{ user.id }}?theme=bythepool&xt=4&h=120&w=120&gx1=0&gy1=0&gy2=60&gx2=60&numcolors=3&size=512">
             {% endif %}
             <div class="media-body">
                 <h2 class="account-heading">{{ user.username }}</h2>
