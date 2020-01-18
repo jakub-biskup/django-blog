@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Post
 
 
@@ -13,6 +13,14 @@ def about(request):
     return render(request, 'blog/about.html', {'title': "About"})
 
 
-def posts(request, post_id):
-    post = Post.objects.get(id=post_id)
-    return render(request, 'blog/post.html', {'post': post})
+def posts(request, post_title_id):
+    posts = Post.objects.all()
+
+    for post in posts:
+        title = post.title.lower()
+        title = title.replace(' ', '-')
+
+        if title == post_title_id:
+            return render(request, 'blog/post.html', {'post': post})
+
+    return redirect('blog-home')
