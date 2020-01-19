@@ -56,4 +56,8 @@ def profile(request):
 
 def community_profile(request, username):
     user = User.objects.get(username=username)
-    return render(request, 'users/community_profile.html', {'c_user': user})
+
+    if user:
+        return render(request, 'users/community_profile.html', {'c_user': user})
+    else:
+        return redirect('blog-home')

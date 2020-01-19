@@ -12,13 +12,11 @@
               <a class="mr-2" href="/community/{{ post.author }}">{{ post.author }}</a>
               <small class="text-muted">{{ post.date_posted | date:'F d, Y' }}</small>
             </div>
-            {% with title=post.title|slugify %}
-            <h2><a class="article-title" href="/posts/{{title}}">{{ post.title }}</a></h2>
+            <h2><a class="article-title" href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
             <p class="article-content">
                 {{ post.content | safe | truncatewords:"80" | linebreaks}}
-                <a href="/posts/{{title}}">read more</a>
+                <a href="{{ post.get_absolute_url }}">read more</a>
             </p>
-            {% endwith %}
           </div>
         </article>
     {% endfor %}
