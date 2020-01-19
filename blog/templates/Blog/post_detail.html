@@ -10,6 +10,12 @@
         <div class="article-metadata">
           <a class="mr-2" href="/community/{{ post.author }}">{{ post.author }}</a>
           <small class="text-muted">{{ post.date_posted | date:'F d, Y' }}</small>
+            {% if post.author == user %}
+            <div>
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ post.get_absolute_url }}/update">Update</a>
+                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{{ post.get_absolute_url }}/delete">Delete</a>
+            </div>
+            {% endif %}
         </div>
         <h2 class="article-title">{{ post.title }}</h2>
         <p class="article-content">{{ post.content }}</p>
