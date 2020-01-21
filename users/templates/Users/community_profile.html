@@ -1,6 +1,5 @@
 {% extends 'Blog/base.html' %}
-{% load gravatar %}
-{% load crispy_forms_tags %}
+{% load pagination_tags %}
 {% block content %}
     <div class="content-section">
         <div class="media">
@@ -12,6 +11,23 @@
             <div class="media-body">
                 <h2 class="account-heading">{{ c_user.username }}</h2>
                 <p class="text-secondary">{{ c_user.email }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="content-section">
+        <div class="media">
+            <div class="media-body">
+                <h2 class="account-heading">Posts</h2>
+                {% paginate page_obj 5 paging %}
+                {% for post in page_obj %}
+                <div class="article-metadata">
+                    <small class="text-muted">{{ post.date_posted | date:'F d, Y' }}</small>
+                </div>
+                <a class="article-title" href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                {% endfor %}
+                {% endpaginate %}
+                <br>
+                <a href="?page={{ paging.next.number }}">Next</a>
             </div>
         </div>
     </div>

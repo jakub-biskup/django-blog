@@ -1,8 +1,11 @@
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
+
+from blog.models import Post
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
 
@@ -58,6 +61,14 @@ def community_profile(request, username):
     user = User.objects.get(username=username)
 
     if user:
-        return render(request, 'users/community_profile.html', {'c_user': user})
+        user_posts = Post.objects.filter(author_id=user.id).order_by('-date_posted')
+        paginator = Paginator(user_posts, 5)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context = {
+            'c_user': user,
+            'page_obj': page_obj,
+        }
+        return render(request, 'users/community_profile.html', context)
     else:
         return redirect('blog-home')

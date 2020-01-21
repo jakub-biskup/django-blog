@@ -27,14 +27,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
-    'django_gravatar',
+    'smart_pagination',
     'django_cleanup.apps.CleanupConfig',
     'django.contrib.admin',
     'django.contrib.auth',
