@@ -41,7 +41,8 @@ urlpatterns = [
     path('profile/', user_views.profile, name='profile'),
     re_path(r'^community/([a-zA-Z0-9\@\.\+\-\_]+)/$',
             user_views.community_profile,
-            name='community_profile')
+            name='community_profile'),
+    path('accounts/', include('allauth.urls')),
 ]
 
 if settings.DEBUG:
