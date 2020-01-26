@@ -10,5 +10,7 @@ SECRET_KEY = config['DJANGO_BLOG_SECRET_KEY']
 
 ALLOWED_HOSTS = ['localhost', '0.0.0.0']
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 EMAIL_HOST_USER = config['EMAIL_USER']
 EMAIL_HOST_PASSWORD = config['EMAIL_PASS']
